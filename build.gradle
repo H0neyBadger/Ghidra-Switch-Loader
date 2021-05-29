@@ -55,9 +55,9 @@ configurations {
 }
 
 dependencies {
-    compile fileTree(dir: ghidraInstallDir + '/Ghidra/Processors', include: "**/*.jar")
+    implementation fileTree(dir: ghidraInstallDir + '/Ghidra/Processors', include: "**/lib/*.jar")
     localDeps group: 'org.lz4', name: 'lz4-java', version: '1.5.1'
-    compile configurations.localDeps
+    implementation configurations.localDeps
 }
 
 buildExtension.enabled = false
