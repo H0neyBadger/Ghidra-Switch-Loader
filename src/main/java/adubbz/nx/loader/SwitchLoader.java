@@ -27,6 +27,7 @@ import ghidra.app.util.importer.MessageLog;
 import ghidra.app.util.opinion.BinaryLoader;
 import ghidra.app.util.opinion.LoadSpec;
 import ghidra.app.util.opinion.LoaderTier;
+import ghidra.app.util.opinion.AbstractProgramLoader.LoadedProgram;
 import ghidra.framework.model.DomainFolder;
 import ghidra.framework.store.LockException;
 import ghidra.program.model.address.Address;
@@ -99,7 +100,7 @@ public class SwitchLoader extends BinaryLoader
     }
 
     @Override
-    protected List<Program> loadProgram(ByteProvider provider, String programName,
+    protected List<LoadedProgram> loadProgram(ByteProvider provider, String programName,
             DomainFolder programFolder, LoadSpec loadSpec, List<Option> options, MessageLog log,
             Object consumer, TaskMonitor monitor)
                     throws IOException, CancelledException 
@@ -125,8 +126,8 @@ public class SwitchLoader extends BinaryLoader
             }
         }
 
-        List<Program> results = new ArrayList<Program>();
-        if (prog != null) results.add(prog);
+        List<LoadedProgram> results = new ArrayList<LoadedProgram>();
+        if (prog != null) results.add(new LoadedProgram(prog, programFolder));
         return results;
     }
 
